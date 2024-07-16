@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Box } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import Header from './components/Header';
+// import Footer from './components/Footer';
+import Home from './pages/Home';
+import MainTheme from './themes/mainTheme';
+// import About from './pages/About';
+// import theme from './themes/theme';
+// import Wrapper from './components/Wrapper';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => {
+    return (
+        <ThemeProvider theme={MainTheme}>
+            <Router>
+              <Box
+                sx={{
+                    backgroundColor: MainTheme.palette.background.default,
+                    display: 'flex',
+                    flexDirection: 'column',
+                }}
+              >
+                
+                <Header />
+                <Routes>
+                    <Route path="/" element={(<Home />)} />
+                    {/* <Route path="/about" element={(<About />)} /> */}
+                </Routes>
+                {/* <Footer /> */}
+              </Box>
+            </Router>
+        </ThemeProvider>
+    );
+};
 
 export default App;
